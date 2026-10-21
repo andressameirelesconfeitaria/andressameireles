@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Achadinhos na Shopee - Andressa Meireles</title>
 	<style>
-		/* ESTILIZATION DE FUNDO: GRADIENTE DINÂMICO QUE ACOMPANHA A ROLAGEM ATÉ O FINAL */
+		/* ESTILIZAÇÃO DE FUNDO: GRADIENTE DINÂMICO QUE ACOMPANHA A ROLAGEM ATÉ O FINAL */
 		html {
 			min-height: 100%;
 		}
@@ -20,7 +20,7 @@
 				/* Malha quadriculada (Grid) */
 				linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
 				linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-				/* Gradiente contínuo de ponta a ponta na rolagema */
+				/* Gradiente contínuo de ponta a ponta na rolagem */
 				linear-gradient(180deg, #23121c 0%, #4a2135 45%, #8c3f63 80%, #b85282 100%);
 			background-size: 24px 24px, 24px 24px, 100% 100%;
 			/* O segredo: 'scroll' faz o gradiente esticar e evoluir junto com a rolagem */
@@ -41,54 +41,56 @@
 			gap: 20px;
 		}
 
-		/* CABEÇALHO DO PERFIL CENTRALIZADO E CLICÁVEL */
+		/* CABEÇALHO DO PERFIL LADO A LADO E CLICÁVEL */
 		.profile-header {
 			display: flex;
-			flex-direction: column;
+			flex-direction: row;
 			align-items: center;
 			justify-content: center;
-			text-align: center;
+			text-align: left;
 			text-decoration: none;
+			gap: 14px;
 			margin-bottom: 15px;
 			transition: transform 0.2s ease, opacity 0.2s ease;
 		}
 
 		.profile-header:hover {
-			transform: scale(1.03);
+			transform: scale(1.02);
 			opacity: 0.95;
 		}
 
 		.profile-avatar {
-			width: 85px;
-			height: 85px;
+			width: 55px;
+			height: 55px;
 			border-radius: 50%;
 			border: 2px solid #ff9f71;
 			object-fit: cover;
-			margin-bottom: 10px;
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+			flex-shrink: 0;
 		}
 
 		.profile-info {
 			display: flex;
 			flex-direction: column;
-			align-items: center;
+			align-items: flex-start;
 			color: #ffffff;
 		}
 
 		.profile-name {
-			font-size: 22px;
+			font-size: 20px;
 			font-weight: 700;
 			letter-spacing: -0.5px;
 			margin: 0;
 			color: #ffffff;
+			line-height: 1.2;
 		}
 
 		.profile-handle {
-			font-size: 13px;
+			font-size: 12px;
 			color: #f1cfdd;
 			text-transform: uppercase;
 			letter-spacing: 0.5px;
-			margin-top: 4px;
+			margin-top: 2px;
 		}
 
 		/* CARD DO BANNER COM PROPORÇÃO DE 1500x600 */
@@ -114,72 +116,9 @@
 			object-fit: cover;
 			display: block;
 		}
-	</style>
-</head>
-<body>
 
-	<div class="page-container">
-
-		<!-- PERFIL DO TOPO CENTRALIZADO COM LINK PARA O INSTAGRAM -->
-		<a href="https://instagram.com/andressameirelesconfeitaria" target="_blank" rel="noopener noreferrer" class="profile-header">
-			<img src="logo.jpeg" alt="Andressa Meireles" class="profile-avatar">
-			<div class="profile-info">
-				<h1 class="profile-name">Andressa Meireles</h1>
-				<span class="profile-handle">@ANDRESSAMEIRELESCONFEITARIA</span>
-			</div>
-		</a>
-
-		<!-- BANNER 1 -->
-		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
-			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 1">
-		</a>
-
-		<!-- BANNER 2 -->
-		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
-			<img src="link-whatsapp.jpg" alt="Achadinhos na Shopee 2">
-		</a>
-
-		<!-- BANNER 3 -->
-		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
-			<img src="link-instadelivery.jpg" alt="Achadinhos na Shopee 3">
-		</a>
-
-		<!-- BANNER 4 -->
-		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
-			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 4">
-		</a>
-
-		<!-- BANNER 5 -->
-		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
-			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 5">
-		</a>
-
-		<!-- BANNER 6 -->
-		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
-			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 6">
-		</a>
-
-		<!-- BANNER 7 -->
-		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
-			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 7">
-		</a>
-
-		<!-- BANNER 8 -->
-		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
-			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 8">
-		</a>
-
-		<!-- BANNER 9 -->
-		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
-			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 9">
-		</a>
-
-		<!-- BANNER 10 -->
-		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
-			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 10">
-		</a>
-
-	</div>
-
-</body>
-</html>
+		/* AJUSTES PARA CELULAR (Telas até 600px) */
+		@media (max-width: 600px) {
+			.profile-avatar {
+				width: 48px;
+				height: 48px
