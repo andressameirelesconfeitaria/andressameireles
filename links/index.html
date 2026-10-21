@@ -1,69 +1,170 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Andressa Meireles</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Achadinhos na Shopee - Andressa Meireles</title>
+	<style>
+		/* ESTILIZATION DE FUNDO: GRADIENTE DINÂMICO QUE ACOMPANHA A ROLAGEM ATÉ O FINAL */
+		html {
+			min-height: 100%;
+		}
 
-    body {
-      background-color: #f4f4f4;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      padding: 20px 10px;
-    }
+		body {
+			margin: 0;
+			padding: 40px 15px 80px 15px;
+			min-height: 100vh;
+			/* Gradiente do bordô escuro no topo ao rosa no final da página */
+			background-color: #7d3b5a;
+			background-image: 
+				/* Malha quadriculada (Grid) */
+				linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+				linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+				/* Gradiente contínuo de ponta a ponta na rolagema */
+				linear-gradient(180deg, #23121c 0%, #4a2135 45%, #8c3f63 80%, #b85282 100%);
+			background-size: 24px 24px, 24px 24px, 100% 100%;
+			/* O segredo: 'scroll' faz o gradiente esticar e evoluir junto com a rolagem */
+			background-attachment: scroll, scroll, scroll; 
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+			display: flex;
+			justify-content: center;
+			box-sizing: border-box;
+		}
 
-    .container {
-      width: 100%;
-      max-width: 450px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+		/* CONTAINER CENTRAL DOS BANNERS */
+		.page-container {
+			width: 100%;
+			max-width: 850px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 20px;
+		}
 
-    .banner-link {
-      display: block;
-      width: 100%;
-      text-decoration: none;
-    }
+		/* CABEÇALHO DO PERFIL NO TOPO */
+		.profile-header {
+			display: flex;
+			align-items: center;
+			gap: 14px;
+			margin-bottom: 10px;
+		}
 
-    .banner-link img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      transition: transform 0.2s ease;
-    }
+		.profile-avatar {
+			width: 70px;
+			height: 70px;
+			border-radius: 50%;
+			border: 2px solid #ff9f71;
+			object-fit: cover;
+		}
 
-    .banner-link img:active {
-      transform: scale(0.98);
-    }
-  </style>
+		.profile-info {
+			display: flex;
+			flex-direction: column;
+			color: #ffffff;
+		}
+
+		.profile-name {
+			font-size: 22px;
+			font-weight: 700;
+			letter-spacing: -0.5px;
+			margin: 0;
+		}
+
+		.profile-handle {
+			font-size: 13px;
+			color: #f1cfdd;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			margin-top: 2px;
+		}
+
+		/* CARD DO BANNER */
+		.banner-card {
+			width: 100%;
+			display: block;
+			text-decoration: none;
+			border-radius: 18px;
+			overflow: hidden;
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+		}
+
+		.banner-card:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+		}
+
+		.banner-card img {
+			width: 100%;
+			height: auto;
+			display: block;
+		}
+	</style>
 </head>
 <body>
 
-  <div class="container">
-    
-    <!-- Imagem 1: Link para o Grupo/Achadinhos da Shopee -->
-    <a href="SEU_LINK_DA_SHOPEE_AQUI" class="banner-link" target="_blank" rel="noopener noreferrer">
-      <img src="banner-shopee.jpg" alt="Achadinhos da Shopee">
-    </a>
+	<div class="page-container">
 
-    <!-- Imagem 2: Link para o WhatsApp de Encomendas -->
-    <a href="https://wa.me/55SEUNUMEROAQUI" class="banner-link" target="_blank" rel="noopener noreferrer">
-      <img src="banner-whatsapp.jpg" alt="Fazer Pedido no WhatsApp">
-    </a>
+		<!-- PERFIL DO TOPO -->
+		<div class="profile-header">
+			<img src="logo.jpeg" alt="Andressa Meireles" class="profile-avatar">
+			<div class="profile-info">
+				<h1 class="profile-name">Andressa Meireles</h1>
+				<span class="profile-handle">@ANDRESSAMEIRELESCONFEITARIA</span>
+			</div>
+		</div>
 
-  </div>
+		<!-- BANNER 1 -->
+		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
+			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 1">
+		</a>
+
+		<!-- BANNER 2 -->
+		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
+			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 2">
+		</a>
+
+		<!-- BANNER 3 -->
+		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
+			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 3">
+		</a>
+
+		<!-- BANNER 4 -->
+		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
+			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 4">
+		</a>
+
+		<!-- BANNER 5 -->
+		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
+			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 5">
+		</a>
+
+		<!-- BANNER 6 -->
+		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
+			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 6">
+		</a>
+
+		<!-- BANNER 7 -->
+		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
+			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 7">
+		</a>
+
+		<!-- BANNER 8 -->
+		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
+			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 8">
+		</a>
+
+		<!-- BANNER 9 -->
+		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
+			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 9">
+		</a>
+
+		<!-- BANNER 10 -->
+		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
+			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee 10">
+		</a>
+
+	</div>
 
 </body>
 </html>
