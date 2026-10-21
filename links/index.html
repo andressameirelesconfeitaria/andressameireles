@@ -30,7 +30,7 @@
 	<meta property="og:description" content="Bolos decorados artesanais, kits festa completos, salgados e achadinhos de confeitaria. Peça pelo iFood ou WhatsApp!">
 	<meta property="og:url" content="https://andressameireles.com.br">
 	<meta property="og:site_name" content="Andressa Meireles Confeitaria">
-	<meta property="og:image" content="https://andressameireles.com.br/Banner%20Transparente%20de%20Andressa%20Meireles.png">
+	<meta property="og:image" content="https://andressameireles.com.br/logo.png">
 	<meta property="og:image:width" content="1200">
 	<meta property="og:image:height" content="630">
 	<meta property="og:image:alt" content="Logo Andressa Meireles Confeitaria">
@@ -39,7 +39,7 @@
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="Andressa Meireles Confeitaria | Bolos e Kits Festa">
 	<meta name="twitter:description" content="Kits festa completos, bolos decorados artesanais e salgados em Belford Roxo. Encomendas via WhatsApp e iFood.">
-	<meta name="twitter:image" content="https://andressameireles.com.br/Banner%20Transparente%20de%20Andressa%20Meireles.png">
+	<meta name="twitter:image" content="https://andressameireles.com.br/logo.png">
 
 	<!-- DADOS ESTRUTURADOS JSON-LD (Rich Snippets para o Google reconhecer a Confeitaria Local) -->
 	<script type="application/ld+json">
@@ -47,16 +47,14 @@
 	  "@context": "https://schema.org",
 	  "@type": "Bakery",
 	  "name": "Andressa Meireles Confeitaria",
-	  "image": "https://andressameireles.com.br/Banner%20Transparente%20de%20Andressa%20Meireles.png",
+	  "image": "https://andressameireles.com.br/logo.png",
 	  "url": "https://andressameireles.com.br",
-	  "telephone": "+5521999999999",
 	  "priceRange": "$$",
 	  "address": {
 	    "@type": "PostalAddress",
 	    "streetAddress": "Belford Roxo",
 	    "addressLocality": "Belford Roxo",
 	    "addressRegion": "RJ",
-	    "postalCode": "26100-000",
 	    "addressCountry": "BR"
 	  },
 	  "geo": {
@@ -142,8 +140,8 @@
 			opacity: 0.95;
 		}
 
-		/* ESTILIZAÇÃO DA SUA IMAGEM COMPLETA (FOTO + NOME + ARROBA) */
-		.profile-banner-img {
+		/* ESTILIZAÇÃO DA SUA LOGO */
+		.profile-logo-img {
 			height: 95px; /* Tamanho no computador */
 			width: auto;
 			max-width: 100%;
@@ -175,10 +173,24 @@
 			display: block;
 		}
 
+		/* RODAPÉ / COPYRIGHT */
+		.site-footer {
+			margin-top: 10px;
+			text-align: center;
+			color: #f1cfdd;
+			font-size: 12px;
+			letter-spacing: 0.5px;
+			opacity: 0.9;
+		}
+
+		.site-footer p {
+			margin: 0;
+		}
+
 		/* AJUSTES EXCLUSIVOS PARA CELULAR (Telas até 600px) */
 		@media (max-width: 600px) {
-			.profile-banner-img {
-				height: 70px; /* Alterado para 70px conforme solicitado */
+			.profile-logo-img {
+				height: 70px; /* Ajuste para 70px no celular */
 			}
 		}
 	</style>
@@ -187,9 +199,9 @@
 
 	<div class="page-container">
 
-		<!-- IMAGEM DO TOPO CENTRALIZADA COM LINK PARA O INSTAGRAM -->
+		<!-- LOGO DO TOPO CENTRALIZADA COM LINK PARA O INSTAGRAM -->
 		<a href="https://instagram.com/andressameirelesconfeitaria" target="_blank" rel="noopener noreferrer" class="profile-header">
-			<img src="logo.png" alt="Andressa Meireles Confeitaria - Kit Festa, Bolos Decorados e Salgados em Belford Roxo" class="profile-banner-img">
+			<img src="logo.png" alt="Andressa Meireles Confeitaria - Kit Festa, Bolos Decorados e Salgados em Belford Roxo" class="profile-logo-img">
 		</a>
 
 		<!-- BANNER 1 - SHOPEE -->
@@ -221,6 +233,11 @@
 		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
 			<img src="banner-shopee.jpg" alt="Andressa Meireles Confeitaria Artesanal">
 		</a>
+
+		<!-- RODAPÉ COM COPYRIGHT -->
+		<footer class="site-footer">
+			<p>&copy; 2026 Andressa Meireles Confeitaria. Todos os direitos reservados.</p>
+		</footer>
 
 	</div>
 
