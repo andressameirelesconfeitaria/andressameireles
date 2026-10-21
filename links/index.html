@@ -3,17 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Andressa Meireles - Links e Promoções</title>
+  <title>Andressa Meireles</title>
   <style>
-    :root {
-      --bg-color: #f8f9fa;
-      --card-bg: #ffffff;
-      --text-color: #333333;
-      --primary-color: #ee4d2d; /* Cor Shopee */
-      --whatsapp-color: #25d366;
-      --accent-color: #d63384;
-    }
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -21,127 +12,57 @@
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      background-color: #f4f4f4;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
       min-height: 100vh;
-      padding: 20px 15px;
+      padding: 20px 10px;
     }
 
     .container {
       width: 100%;
-      max-width: 480px;
-      text-align: center;
-    }
-
-    .profile {
-      margin-bottom: 25px;
-    }
-
-    .profile img {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      border: 3px solid #fff;
-    }
-
-    .profile h1 {
-      font-size: 1.4rem;
-      margin-top: 12px;
-      color: #222;
-    }
-
-    .profile p {
-      font-size: 0.95rem;
-      color: #666;
-      margin-top: 4px;
-    }
-
-    .links-container {
+      max-width: 450px;
       display: flex;
       flex-direction: column;
       gap: 15px;
     }
 
-    .btn-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 16px 20px;
-      background-color: var(--card-bg);
-      color: var(--text-color);
+    .banner-link {
+      display: block;
+      width: 100%;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
+    }
+
+    .banner-link img {
+      width: 100%;
+      height: auto;
+      display: block;
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      border: 1px solid #eaeaea;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: transform 0.2s ease;
     }
 
-    .btn-link:active, .btn-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    }
-
-    .btn-shopee {
-      background-color: var(--primary-color);
-      color: #ffffff;
-      border: none;
-    }
-
-    .btn-whatsapp {
-      background-color: var(--whatsapp-color);
-      color: #ffffff;
-      border: none;
-    }
-
-    footer {
-      margin-top: 40px;
-      font-size: 0.8rem;
-      color: #888;
+    .banner-link img:active {
+      transform: scale(0.98);
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- Perfil -->
-    <div class="profile">
-      <img src="logo.jpeg" alt="Andressa Meireles Logo">
-      <h1>Andressa Meireles</h1>
-      <p>Confeitaria & Achadinhos de Promoções 🍰🛒</p>
-    </div>
+    
+    <!-- Imagem 1: Link para o Grupo/Achadinhos da Shopee -->
+    <a href="SEU_LINK_DA_SHOPEE_AQUI" class="banner-link" target="_blank" rel="noopener noreferrer">
+      <img src="banner-shopee.jpg" alt="Achadinhos da Shopee">
+    </a>
 
-    <!-- Lista de Links -->
-    <div class="links-container">
-      
-      <!-- Link Shopee -->
-      <a href="SUO_LINK_DA_SHOPEE_AQUI" class="btn-link btn-shopee" target="_blank" rel="noopener noreferrer">
-        🛒 Grupo de Achadinhos na Shopee
-      </a>
+    <!-- Imagem 2: Link para o WhatsApp de Encomendas -->
+    <a href="https://wa.me/55SEUNUMEROAQUI" class="banner-link" target="_blank" rel="noopener noreferrer">
+      <img src="banner-whatsapp.jpg" alt="Fazer Pedido no WhatsApp">
+    </a>
 
-      <!-- Link WhatsApp / Encomendas -->
-      <a href="https://wa.me/55SEUNUMEROAQUI" class="btn-link btn-whatsapp" target="_blank" rel="noopener noreferrer">
-        💬 Fazer Pedido / Encomendas via WhatsApp
-      </a>
-
-      <!-- Link Secundário / Outros -->
-      <a href="#" class="btn-link">
-        ✨ Catálogo de Confeitaria
-      </a>
-
-    </div>
-
-    <footer>
-      © Andressa Meireles. Todos os direitos reservados.
-    </footer>
   </div>
 
 </body>
