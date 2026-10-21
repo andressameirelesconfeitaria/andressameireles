@@ -41,25 +41,37 @@
 			gap: 20px;
 		}
 
-		/* CABEÇALHO DO PERFIL NO TOPO */
+		/* CABEÇALHO DO PERFIL CENTRALIZADO E CLICÁVEL */
 		.profile-header {
 			display: flex;
+			flex-direction: column;
 			align-items: center;
-			gap: 14px;
-			margin-bottom: 10px;
+			justify-content: center;
+			text-align: center;
+			text-decoration: none;
+			margin-bottom: 15px;
+			transition: transform 0.2s ease, opacity 0.2s ease;
+		}
+
+		.profile-header:hover {
+			transform: scale(1.03);
+			opacity: 0.95;
 		}
 
 		.profile-avatar {
-			width: 70px;
-			height: 70px;
+			width: 85px;
+			height: 85px;
 			border-radius: 50%;
 			border: 2px solid #ff9f71;
 			object-fit: cover;
+			margin-bottom: 10px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 		}
 
 		.profile-info {
 			display: flex;
 			flex-direction: column;
+			align-items: center;
 			color: #ffffff;
 		}
 
@@ -68,6 +80,7 @@
 			font-weight: 700;
 			letter-spacing: -0.5px;
 			margin: 0;
+			color: #ffffff;
 		}
 
 		.profile-handle {
@@ -75,7 +88,7 @@
 			color: #f1cfdd;
 			text-transform: uppercase;
 			letter-spacing: 0.5px;
-			margin-top: 2px;
+			margin-top: 4px;
 		}
 
 		/* CARD DO BANNER COM PROPORÇÃO DE 1500x600 */
@@ -107,14 +120,14 @@
 
 	<div class="page-container">
 
-		<!-- PERFIL DO TOPO -->
-		<div class="profile-header">
+		<!-- PERFIL DO TOPO CENTRALIZADO COM LINK PARA O INSTAGRAM -->
+		<a href="https://instagram.com/andressameirelesconfeitaria" target="_blank" rel="noopener noreferrer" class="profile-header">
 			<img src="logo.jpeg" alt="Andressa Meireles" class="profile-avatar">
 			<div class="profile-info">
 				<h1 class="profile-name">Andressa Meireles</h1>
 				<span class="profile-handle">@ANDRESSAMEIRELESCONFEITARIA</span>
 			</div>
-		</div>
+		</a>
 
 		<!-- BANNER 1 -->
 		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
