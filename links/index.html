@@ -194,6 +194,427 @@
 				height: 70px; /* Ajuste para 70px no celular */
 			}
 		}
+	
+		/* ==================== NOVO: BANNER DE DELIVERY COM JANELA FLUTUANTE ==================== */
+		.delivery-wrapper {
+			position: relative;
+			width: 100%;
+		}
+
+		/* BANNER PRINCIPAL (DISPARADOR) */
+		.delivery-banner-trigger {
+			position: relative;
+			width: 100%;
+			cursor: pointer;
+			display: block;
+			border-radius: 18px;
+			overflow: hidden;
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+			transition: transform 0.25s ease, box-shadow 0.25s ease;
+			border: 2px solid transparent;
+		}
+
+		.delivery-banner-trigger:hover,
+		.delivery-wrapper.is-open .delivery-banner-trigger {
+			transform: translateY(-3px);
+			box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55), 0 0 25px rgba(224, 122, 156, 0.35);
+			border-color: rgba(241, 207, 221, 0.45);
+		}
+
+		.delivery-banner-trigger img {
+			width: 100%;
+			height: auto;
+			aspect-ratio: 1500 / 600;
+			object-fit: cover;
+			display: block;
+			transition: transform 0.4s ease, filter 0.4s ease;
+		}
+
+		.delivery-wrapper:hover .delivery-banner-trigger img,
+		.delivery-wrapper.is-open .delivery-banner-trigger img {
+			transform: scale(1.02);
+			filter: brightness(0.82);
+		}
+
+		/* TAG HINT INFORMATIVA NO BANNER (PULSANTE) */
+		.delivery-hint-badge {
+			position: absolute;
+			bottom: 14px;
+			right: 14px;
+			background: rgba(35, 18, 28, 0.90);
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
+			color: #ffffff;
+			padding: 8px 16px;
+			border-radius: 30px;
+			font-size: 13px;
+			font-weight: 600;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+			border: 1px solid rgba(255, 255, 255, 0.25);
+			pointer-events: none;
+			transition: opacity 0.25s ease, transform 0.25s ease;
+		}
+
+		.delivery-wrapper:hover .delivery-hint-badge,
+		.delivery-wrapper.is-open .delivery-hint-badge {
+			opacity: 0;
+			transform: translateY(6px);
+		}
+
+		.pulse-indicator {
+			width: 10px;
+			height: 10px;
+			background-color: #4ade80;
+			border-radius: 50%;
+			box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+			animation: pulse-ring 1.8s infinite;
+		}
+
+		@keyframes pulse-ring {
+			0% {
+				transform: scale(0.95);
+				box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+			}
+			70% {
+				transform: scale(1);
+				box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);
+			}
+			100% {
+				transform: scale(0.95);
+				box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+			}
+		}
+
+		/* JANELA FLUTUANTE (POPUP / OVERLAY) */
+		.delivery-floating-window {
+			position: absolute;
+			inset: 0;
+			background: rgba(28, 13, 22, 0.92);
+			backdrop-filter: blur(14px);
+			-webkit-backdrop-filter: blur(14px);
+			border-radius: 18px;
+			border: 1.5px solid rgba(255, 255, 255, 0.22);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			padding: 20px 24px;
+			box-sizing: border-box;
+			opacity: 0;
+			visibility: hidden;
+			transform: scale(0.96) translateY(4px);
+			transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+			            visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+			            transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+			z-index: 30;
+			box-shadow: inset 0 0 30px rgba(0,0,0,0.4), 0 20px 40px rgba(0,0,0,0.6);
+		}
+
+		/* MOSTRAR AO PASSAR O MOUSE (DESKTOP) OU AO CLICAR (MOBILE / IS-OPEN) */
+		.delivery-wrapper:hover .delivery-floating-window,
+		.delivery-wrapper.is-open .delivery-floating-window {
+			opacity: 1;
+			visibility: visible;
+			transform: scale(1) translateY(0);
+		}
+
+		/* BOTÃO FECHAR (ESPECIALMENTE ÚTIL NO CELULAR) */
+		.delivery-close-btn {
+			position: absolute;
+			top: 12px;
+			right: 14px;
+			background: rgba(255, 255, 255, 0.12);
+			border: 1px solid rgba(255, 255, 255, 0.25);
+			color: #ffffff;
+			width: 32px;
+			height: 32px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			font-size: 18px;
+			line-height: 1;
+			transition: background 0.2s, transform 0.2s;
+			z-index: 35;
+		}
+
+		.delivery-close-btn:hover {
+			background: rgba(255, 255, 255, 0.28);
+			transform: rotate(90deg) scale(1.1);
+		}
+
+		.floating-header {
+			text-align: center;
+			margin-bottom: 16px;
+		}
+
+		.floating-title {
+			margin: 0;
+			color: #ffffff;
+			font-size: 19px;
+			font-weight: 700;
+			letter-spacing: 0.3px;
+			text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+		}
+
+		.floating-subtitle {
+			margin: 4px 0 0 0;
+			color: #f1cfdd;
+			font-size: 13px;
+			opacity: 0.95;
+		}
+
+		/* GRADE DAS 3 OPÇÕES FLUTUANTES */
+		.delivery-options-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 16px;
+			width: 100%;
+			max-width: 760px;
+		}
+
+		/* CARD INDIVIDUAL DE CADA PLATAFORMA */
+		.delivery-option-card {
+			position: relative;
+			background: rgba(255, 255, 255, 0.08);
+			border: 1.5px solid rgba(255, 255, 255, 0.18);
+			border-radius: 14px;
+			padding: 14px 10px;
+			text-decoration: none;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			gap: 8px;
+			transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+			            box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+			            border-color 0.25s ease,
+			            background 0.25s ease;
+			box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+			overflow: hidden;
+		}
+
+		.delivery-option-card::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.18), transparent 70%);
+			opacity: 0;
+			transition: opacity 0.25s ease;
+			pointer-events: none;
+		}
+
+		.delivery-option-card:hover {
+			transform: translateY(-6px) scale(1.03);
+			background: rgba(255, 255, 255, 0.14);
+		}
+
+		.delivery-option-card:hover::before {
+			opacity: 1;
+		}
+
+		/* LOGO / ÍCONE FLUTUANTE DE CADA PLATAFORMA */
+		.option-logo-box {
+			width: 58px;
+			height: 58px;
+			border-radius: 14px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+			transition: transform 0.25s ease, box-shadow 0.25s ease;
+			flex-shrink: 0;
+		}
+
+		.delivery-option-card:hover .option-logo-box {
+			transform: scale(1.08) rotate(-2deg);
+			box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
+		}
+
+		/* ESTILOS POR MARCA */
+		/* 1. DELIVERY PRÓPRIO */
+		.card-proprio {
+			border-color: rgba(224, 122, 156, 0.35);
+		}
+		.card-proprio:hover {
+			border-color: #ffd166;
+			box-shadow: 0 12px 28px rgba(184, 82, 130, 0.4), 0 0 20px rgba(255, 209, 102, 0.3);
+		}
+		.logo-proprio {
+			background: linear-gradient(135deg, #b85282 0%, #6b2146 100%);
+			border: 1.5px solid rgba(255, 209, 102, 0.6);
+		}
+
+		/* 2. IFOOD */
+		.card-ifood {
+			border-color: rgba(234, 29, 44, 0.35);
+		}
+		.card-ifood:hover {
+			border-color: #ea1d2c;
+			box-shadow: 0 12px 28px rgba(234, 29, 44, 0.45), 0 0 20px rgba(234, 29, 44, 0.3);
+		}
+		.logo-ifood {
+			background: #ea1d2c;
+			border: 1.5px solid rgba(255, 255, 255, 0.3);
+		}
+
+		/* 3. 99FOOD */
+		.card-99food {
+			border-color: rgba(255, 140, 0, 0.35);
+		}
+		.card-99food:hover {
+			border-color: #ff9900;
+			box-shadow: 0 12px 28px rgba(255, 140, 0, 0.45), 0 0 20px rgba(255, 153, 0, 0.3);
+		}
+		.logo-99food {
+			background: linear-gradient(135deg, #ffaa00 0%, #ff6600 100%);
+			border: 1.5px solid rgba(255, 255, 255, 0.3);
+		}
+
+		/* TEXTOS DOS CARDS */
+		.option-title {
+			color: #ffffff;
+			font-size: 15px;
+			font-weight: 700;
+			letter-spacing: 0.3px;
+			margin: 0;
+		}
+
+		.option-tag {
+			font-size: 11px;
+			padding: 3px 8px;
+			border-radius: 12px;
+			font-weight: 600;
+			letter-spacing: 0.2px;
+			white-space: nowrap;
+		}
+
+		.tag-proprio {
+			background: rgba(255, 209, 102, 0.2);
+			color: #ffd166;
+			border: 1px solid rgba(255, 209, 102, 0.4);
+		}
+
+		.tag-ifood {
+			background: rgba(234, 29, 44, 0.2);
+			color: #ff858e;
+			border: 1px solid rgba(234, 29, 44, 0.4);
+		}
+
+		.tag-99food {
+			background: rgba(255, 170, 0, 0.2);
+			color: #ffb84d;
+			border: 1px solid rgba(255, 170, 0, 0.4);
+		}
+
+		.option-btn-text {
+			color: #ffffff;
+			font-size: 11px;
+			font-weight: 600;
+			background: rgba(255, 255, 255, 0.15);
+			padding: 4px 10px;
+			border-radius: 20px;
+			display: inline-flex;
+			align-items: center;
+			gap: 4px;
+			transition: background 0.2s, transform 0.2s;
+		}
+
+		.delivery-option-card:hover .option-btn-text {
+			background: #ffffff;
+			color: #23121c;
+			transform: scale(1.05);
+		}
+
+		/* RESPONSIVIDADE PARA CELULAR (TELAS ATÉ 680px) */
+		@media (max-width: 680px) {
+			.delivery-floating-window {
+				padding: 12px 10px;
+			}
+			.floating-header {
+				margin-bottom: 8px;
+			}
+			.floating-title {
+				font-size: 15px;
+			}
+			.floating-subtitle {
+				font-size: 11px;
+			}
+			.delivery-options-grid {
+				gap: 8px;
+			}
+			.delivery-option-card {
+				padding: 8px 4px;
+				gap: 4px;
+				border-radius: 10px;
+			}
+			.option-logo-box {
+				width: 40px;
+				height: 40px;
+				border-radius: 10px;
+			}
+			.option-logo-box svg {
+				width: 24px;
+				height: 24px;
+			}
+			.option-title {
+				font-size: 12px;
+			}
+			.option-tag {
+				font-size: 9px;
+				padding: 2px 5px;
+			}
+			.option-btn-text {
+				font-size: 10px;
+				padding: 3px 6px;
+			}
+			.delivery-hint-badge {
+				font-size: 11px;
+				padding: 5px 10px;
+				bottom: 8px;
+				right: 8px;
+			}
+			.delivery-close-btn {
+				top: 8px;
+				right: 8px;
+				width: 26px;
+				height: 26px;
+				font-size: 14px;
+			}
+		}
+
+		/* CELULARES MAIS COMPACTOS (ATÉ 420px) */
+		@media (max-width: 420px) {
+			.floating-subtitle {
+				display: none;
+			}
+			.option-tag {
+				display: none;
+			}
+			.option-btn-text {
+				display: none;
+			}
+			.option-logo-box {
+				width: 36px;
+				height: 36px;
+			}
+			.option-logo-box svg {
+				width: 20px;
+				height: 20px;
+			}
+			.option-title {
+				font-size: 11px;
+			}
+		}
+
 	</style>
 </head>
 <body>
@@ -212,10 +633,86 @@
 			<img src="link-whatsapp.jpg" alt="Encomende pelo WhatsApp - Bolos Decorados e Kits Festa em Belford Roxo">
 		</a>
 
-		<!-- 3. LINK DE PEDIDO DE DELIVERY (IFOOD / INSTADELIVERY) -->
-		<a href="https://instadelivery.com.br/andressameirelesconfeitaria" target="_blank" class="banner-card">
-			<img src="link-instadelivery.jpg" alt="Peça no Delivery iFood - Doces, Salgados e Fatias de Bolo em Belford Roxo">
-		</a>
+
+		<!-- ==================== BANNER DE DELIVERY COM JANELA FLUTUANTE (INTERATIVO) ==================== -->
+		<div class="delivery-wrapper" id="deliveryWrapper">
+			<!-- Banner visual disparador -->
+			<div class="delivery-banner-trigger" id="deliveryTrigger" tabindex="0" role="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Abrir opções de delivery da Confeitaria Andressa Meireles">
+				<img src="link-instadelivery.jpg" alt="Peça no Delivery - Confeitaria Andressa Meireles: Delivery Próprio, iFood e 99Food">
+				
+				<!-- Badge de dica interativa -->
+				<div class="delivery-hint-badge">
+					<span class="pulse-indicator"></span>
+					<span>Passe o mouse ou clique para pedir</span>
+				</div>
+			</div>
+
+			<!-- JANELA FLUTUANTE DE ESCOLHA DE DELIVERY -->
+			<div class="delivery-floating-window" id="deliveryFloatingWindow" role="dialog" aria-modal="true" aria-label="Escolha sua plataforma de delivery">
+				<!-- Botão de Fechar -->
+				<button type="button" class="delivery-close-btn" id="deliveryCloseBtn" aria-label="Fechar janela de delivery" title="Fechar">&times;</button>
+
+				<!-- Cabeçalho da Janela Flutuante -->
+				<div class="floating-header">
+					<h3 class="floating-title">
+						<span>🛵 Onde você deseja pedir?</span>
+					</h3>
+					<p class="floating-subtitle">Selecione seu aplicativo ou plataforma preferida</p>
+				</div>
+
+				<!-- Grid com as 3 opções flutuantes -->
+				<div class="delivery-options-grid">
+					
+					<!-- OPÇÃO 1: DELIVERY PRÓPRIO (INSTADELIVERY) -->
+					<a href="https://instadelivery.com.br/andressameirelesconfeitaria" target="_blank" rel="noopener noreferrer" class="delivery-option-card card-proprio" id="btnDeliveryProprio" title="Pedir pelo Delivery Próprio Oficial">
+						<div class="option-logo-box logo-proprio">
+							<!-- Logomarca Delivery Próprio (Confeitaria & Sacola de Pedido Oficial) -->
+							<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color: #ffd166;">
+								<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+								<line x1="3" y1="6" x2="21" y2="6"/>
+								<path d="M16 10a4 4 0 0 1-8 0"/>
+							</svg>
+						</div>
+						<span class="option-tag tag-proprio">Melhor Preço</span>
+						<h4 class="option-title">Delivery Próprio</h4>
+						<span class="option-btn-text">Pedir Agora &rarr;</span>
+					</a>
+
+					<!-- OPÇÃO 2: IFOOD -->
+					<a href="https://www.ifood.com.br/delivery/belford-roxo-rj/andressa-meireles-kits-festa-centro/2ac38b0f-d7ea-4295-8dc2-36e9d6ca0651" target="_blank" rel="noopener noreferrer" class="delivery-option-card card-ifood" id="btnIfood" title="Pedir pelo aplicativo iFood">
+						<div class="option-logo-box logo-ifood">
+							<!-- Logomarca Oficial iFood (Smile Emblem) -->
+							<svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M26 38C26 34.6863 28.6863 32 32 32C35.3137 32 38 34.6863 38 38C38 41.3137 35.3137 44 32 44C28.6863 44 26 41.3137 26 38Z" fill="white"/>
+								<path d="M62 38C62 34.6863 64.6863 32 68 32C71.3137 32 74 34.6863 74 38C74 41.3137 71.3137 44 68 44C64.6863 44 62 41.3137 62 38Z" fill="white"/>
+								<path d="M20 54C20 54 32 68 50 68C68 68 80 54 80 54" stroke="white" stroke-width="9" stroke-linecap="round"/>
+							</svg>
+						</div>
+						<span class="option-tag tag-ifood">App iFood</span>
+						<h4 class="option-title">iFood</h4>
+						<span class="option-btn-text">Pedir no iFood &rarr;</span>
+					</a>
+
+					<!-- OPÇÃO 3: 99FOOD -->
+					<!-- Link para 99Food: Substitua pelo link direto da sua loja se possuir -->
+					<a href="https://food.99app.com/" target="_blank" rel="noopener noreferrer" class="delivery-option-card card-99food" id="btn99food" title="Pedir pelo aplicativo 99Food">
+						<div class="option-logo-box logo-99food">
+							<!-- Logomarca Oficial 99Food -->
+							<svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect width="100" height="100" rx="20" fill="transparent"/>
+								<text x="50%" y="46%" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="42" fill="white">99</text>
+								<text x="50%" y="76%" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="18" fill="white" letter-spacing="1">FOOD</text>
+							</svg>
+						</div>
+						<span class="option-tag tag-99food">App 99Food</span>
+						<h4 class="option-title">99Food</h4>
+						<span class="option-btn-text">Pedir no 99 &rarr;</span>
+					</a>
+
+				</div>
+			</div>
+		</div>
+
 
 		<!-- 2. LINK DA SHOPEE -->
 		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
@@ -244,6 +741,63 @@
 		</footer>
 
 	</div>
+
+
+	<!-- SCRIPT DE INTERAÇÃO DA JANELA FLUTUANTE DE DELIVERY -->
+	<script>
+		(function() {
+			const wrapper = document.getElementById('deliveryWrapper');
+			const trigger = document.getElementById('deliveryTrigger');
+			const closeBtn = document.getElementById('deliveryCloseBtn');
+
+			if (!wrapper || !trigger) return;
+
+			// Alterna abertura no clique / toque (ideal para smartphones e tablets)
+			trigger.addEventListener('click', function(e) {
+				const isOpen = wrapper.classList.contains('is-open');
+				if (isOpen) {
+					wrapper.classList.remove('is-open');
+					trigger.setAttribute('aria-expanded', 'false');
+				} else {
+					wrapper.classList.add('is-open');
+					trigger.setAttribute('aria-expanded', 'true');
+				}
+			});
+
+			// Acessibilidade por teclado (Enter ou Espaço abre/fecha)
+			trigger.addEventListener('keydown', function(e) {
+				if (e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					trigger.click();
+				}
+			});
+
+			// Botão de fechar
+			if (closeBtn) {
+				closeBtn.addEventListener('click', function(e) {
+					e.stopPropagation();
+					wrapper.classList.remove('is-open');
+					trigger.setAttribute('aria-expanded', 'false');
+				});
+			}
+
+			// Fechar se clicar fora no celular
+			document.addEventListener('click', function(e) {
+				if (!wrapper.contains(e.target)) {
+					wrapper.classList.remove('is-open');
+					trigger.setAttribute('aria-expanded', 'false');
+				}
+			});
+
+			// Fechar com a tecla ESC
+			document.addEventListener('keydown', function(e) {
+				if (e.key === 'Escape') {
+					wrapper.classList.remove('is-open');
+					trigger.setAttribute('aria-expanded', 'false');
+				}
+			});
+		})();
+	</script>
 
 </body>
 </html>
