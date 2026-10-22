@@ -150,7 +150,7 @@
 			filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); 
 		}
 
-		/* CARD DO BANNER COM PROPORÇÃO FIXA DE 1500x600 */
+		/* CARD DO BANNER COM PROPORÇÃO FIXA DE 16:9 */
 		.banner-card {
 			width: 100%;
 			display: block;
@@ -169,7 +169,7 @@
 		.banner-card img {
 			width: 100%;
 			height: auto;
-			aspect-ratio: 1500 / 600;
+			aspect-ratio: 16 / 9;
 			object-fit: cover;
 			display: block;
 		}
@@ -195,7 +195,7 @@
 			}
 		}
 	
-		/* ==================== NOVO: BANNER DE DELIVERY COM JANELA FLUTUANTE TRANSPARENTE (GLASSMORPHISM) ==================== */
+		/* ==================== BANNER DE DELIVERY COM JANELA FLUTUANTE (GLASSMORPHISM) ==================== */
 		.delivery-wrapper {
 			position: relative;
 			width: 100%;
@@ -225,14 +225,13 @@
 		.delivery-banner-trigger img {
 			width: 100%;
 			height: auto;
-			aspect-ratio: 1500 / 600;
+			aspect-ratio: 16 / 9;
 			object-fit: cover;
 			display: block;
 			transition: transform 0.4s ease, filter 0.4s ease;
 		}
 
-		/* Mantém a imagem do banner clara e visível ao fundo, apenas com leve desfoque suave */
-		.delivery-wrapper:hover .delivery-banner-trigger img,
+		/* A imagem só desfoca e dá zoom quando a janela estiver aberta (.is-open) */
 		.delivery-wrapper.is-open .delivery-banner-trigger img {
 			transform: scale(1.03);
 			filter: blur(2px) brightness(1.02);
@@ -260,7 +259,7 @@
 			transition: opacity 0.25s ease, transform 0.25s ease;
 		}
 
-		.delivery-wrapper:hover .delivery-hint-badge,
+		/* O aviso some apenas quando a janela abre (.is-open) */
 		.delivery-wrapper.is-open .delivery-hint-badge {
 			opacity: 0;
 			transform: translateY(6px);
@@ -290,28 +289,28 @@
 			}
 		}
 
-		/* JANELA FLUTUANTE TRANSPARENTE (MANTÉM A IMAGEM DO BANNER VISÍVEL AO FUNDO) */
+		/* JANELA FLUTUANTE PERFEITAMENTE CENTRALIZADA SOBRE O BANNER */
 		.delivery-floating-window {
 			position: absolute;
 			top: 50%;
-			left: 0;
-			right: 0;
-			min-height: 100%;
+			left: 10px;
+			right: 10px;
 			height: auto;
-			background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 245, 238, 0.28) 100%);
-			backdrop-filter: blur(5px) saturate(115%);
-			-webkit-backdrop-filter: blur(5px) saturate(115%);
+			max-height: 92%;
+			background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 245, 238, 0.35) 100%);
+			backdrop-filter: blur(6px) saturate(115%);
+			-webkit-backdrop-filter: blur(6px) saturate(115%);
 			border-radius: 18px;
-			border: 1.5px solid rgba(255, 255, 255, 0.65);
+			border: 1.5px solid rgba(255, 255, 255, 0.75);
 			display: flex;
 			flex-direction: column;
-			justify-content: flex-start;
+			justify-content: center;
 			align-items: center;
-			padding: 14px 20px 18px 20px;
+			padding: 14px 16px;
 			box-sizing: border-box;
 			opacity: 0;
 			visibility: hidden;
-			transform: translateY(-48%) scale(0.96);
+			transform: translateY(-50%) scale(0.96);
 			transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
 			            visibility 0.28s cubic-bezier(0.16, 1, 0.3, 1),
 			            transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
@@ -319,32 +318,31 @@
 			box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.4) inset;
 		}
 
-		/* MOSTRAR AO PASSAR O MOUSE (DESKTOP) OU AO CLICAR/TOCAR (MOBILE / IS-OPEN) */
-		.delivery-wrapper:hover .delivery-floating-window,
+		/* MOSTRAR QUANDO A CLASSE .is-open ESTIVER ATIVA */
 		.delivery-wrapper.is-open .delivery-floating-window {
 			opacity: 1;
 			visibility: visible;
 			transform: translateY(-50%) scale(1);
 		}
 
-		/* BOTÃO FECHAR (TRANSLÚCIDO E ELEGANTE) */
+		/* BOTÃO FECHAR */
 		.delivery-close-btn {
 			position: absolute;
 			top: 10px;
 			right: 12px;
-			background: rgba(255, 255, 255, 0.85);
+			background: rgba(255, 255, 255, 0.9);
 			backdrop-filter: blur(6px);
 			-webkit-backdrop-filter: blur(6px);
 			border: 1.5px solid rgba(255, 255, 255, 0.95);
 			color: #4a122c;
-			width: 34px;
-			height: 34px;
+			width: 32px;
+			height: 32px;
 			border-radius: 50%;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			cursor: pointer;
-			font-size: 20px;
+			font-size: 19px;
 			font-weight: 800;
 			line-height: 1;
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -358,15 +356,15 @@
 			transform: rotate(90deg) scale(1.08);
 		}
 
-		/* CABEÇALHO EM CÁPSULA TRANSLÚCIDA NO TOPO PARA LEITURA PERFEITA SOBRE A IMAGEM */
+		/* CABEÇALHO EM CÁPSULA TRANSLÚCIDA NO TOPO */
 		.floating-header {
 			text-align: center;
 			margin-top: 0;
-			margin-bottom: 14px;
-			background: rgba(255, 255, 255, 0.82);
+			margin-bottom: 12px;
+			background: rgba(255, 255, 255, 0.88);
 			backdrop-filter: blur(8px);
 			-webkit-backdrop-filter: blur(8px);
-			padding: 6px 22px 8px 22px;
+			padding: 5px 20px 7px 20px;
 			border-radius: 40px;
 			border: 1.5px solid rgba(255, 255, 255, 0.95);
 			box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
@@ -377,7 +375,7 @@
 		.floating-title {
 			margin: 0;
 			color: #3b0d22;
-			font-size: 24px;
+			font-size: 22px;
 			font-weight: 900;
 			letter-spacing: -0.3px;
 			line-height: 1.2;
@@ -391,35 +389,35 @@
 		.floating-subtitle {
 			margin: 2px 0 0 0;
 			color: #6d2446;
-			font-size: 13px;
+			font-size: 12.5px;
 			font-weight: 700;
 		}
 
-		/* GRADE DAS 3 OPÇÕES FLUTUANTES */
+		/* GRADE DAS 3 OPÇÕES FLUTUANTES CENTRALIZADAS */
 		.delivery-options-grid {
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
-			gap: 16px;
+			gap: 14px;
 			width: 100%;
-			max-width: 780px;
+			max-width: 760px;
 		}
 
-		/* CARD INDIVIDUAL DE CADA PLATAFORMA (VIDRO TRANSLÚCIDO) */
+		/* CARD INDIVIDUAL DE CADA PLATAFORMA */
 		.delivery-option-card {
 			position: relative;
-			background: rgba(255, 255, 255, 0.68);
+			background: rgba(255, 255, 255, 0.78);
 			backdrop-filter: blur(8px);
 			-webkit-backdrop-filter: blur(8px);
-			border: 2px solid rgba(255, 255, 255, 0.9);
-			border-radius: 18px;
-			padding: 12px 10px;
+			border: 2px solid rgba(255, 255, 255, 0.95);
+			border-radius: 16px;
+			padding: 10px 8px;
 			text-decoration: none;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
 			text-align: center;
-			gap: 7px;
+			gap: 6px;
 			transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
 			            box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
 			            border-color 0.25s ease,
@@ -429,19 +427,19 @@
 		}
 
 		.delivery-option-card:hover {
-			transform: translateY(-6px) scale(1.04);
-			background: rgba(255, 255, 255, 0.92);
+			transform: translateY(-5px) scale(1.03);
+			background: rgba(255, 255, 255, 0.96);
 		}
 
-		/* CAIXA DO ÍCONE / LOGOMARCA BEM GRANDE E LEGÍVEL */
+		/* CAIXA DO ÍCONE / LOGOMARCA */
 		.option-logo-box {
-			width: 114px;
-			height: 86px;
-			border-radius: 18px;
+			width: 100px;
+			height: 76px;
+			border-radius: 14px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+			box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 			transition: transform 0.25s ease, box-shadow 0.25s ease;
 			flex-shrink: 0;
 			overflow: hidden;
@@ -454,12 +452,11 @@
 		}
 
 		.delivery-option-card:hover .option-logo-box {
-			transform: scale(1.06);
-			box-shadow: 0 12px 26px rgba(0, 0, 0, 0.3);
+			transform: scale(1.05);
+			box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
 		}
 
 		/* ESTILOS POR MARCA */
-		/* 1. DELIVERY DIRETO (PRÓPRIO) */
 		.card-proprio:hover {
 			border-color: #ffd166;
 			box-shadow: 0 14px 30px rgba(140, 38, 86, 0.35);
@@ -469,7 +466,6 @@
 			border: 2px solid #ffd166;
 		}
 
-		/* 2. IFOOD */
 		.card-ifood:hover {
 			border-color: #ea1d2c;
 			box-shadow: 0 14px 30px rgba(234, 29, 44, 0.35);
@@ -479,7 +475,6 @@
 			border: 2px solid rgba(255, 255, 255, 0.85);
 		}
 
-		/* 3. 99FOOD */
 		.card-99food:hover {
 			border-color: #ff9900;
 			box-shadow: 0 14px 30px rgba(255, 136, 0, 0.35);
@@ -489,10 +484,10 @@
 			border: 2px solid rgba(255, 255, 255, 0.85);
 		}
 
-		/* TEXTOS ABAIXO DO ÍCONE */
+		/* TEXTOS */
 		.option-title {
 			color: #260a17;
-			font-size: 16px;
+			font-size: 15px;
 			font-weight: 900;
 			letter-spacing: -0.2px;
 			margin: 2px 0 0 0;
@@ -501,10 +496,10 @@
 		}
 
 		.option-subtitle {
-			font-size: 12px;
+			font-size: 11px;
 			font-weight: 800;
 			margin: 0;
-			padding: 3px 10px;
+			padding: 2px 8px;
 			border-radius: 20px;
 			white-space: nowrap;
 		}
@@ -524,74 +519,69 @@
 			color: #ffcc00;
 		}
 
-		/* RESPONSIVIDADE PARA CELULAR (FOCO EM LEITURA GRANDE E CLARA NO MOBILE) */
+		/* RESPONSIVIDADE PARA CELULAR */
 		@media (max-width: 680px) {
 			.delivery-floating-window {
-				padding: 12px 10px 14px 10px;
-				border-radius: 18px;
+				padding: 10px 8px;
+				left: 6px;
+				right: 6px;
+				border-radius: 14px;
 			}
 			.floating-header {
-				margin-top: 0;
-				margin-bottom: 10px;
-				padding: 5px 16px 6px 16px;
+				margin-bottom: 8px;
+				padding: 4px 14px 5px 14px;
 			}
 			.floating-title {
-				font-size: 20px;
+				font-size: 17px;
 			}
 			.floating-subtitle {
-				font-size: 11.5px;
+				font-size: 10.5px;
 			}
 			.delivery-options-grid {
-				gap: 8px;
+				gap: 6px;
 			}
 			.delivery-option-card {
-				padding: 9px 5px;
-				gap: 5px;
-				border-radius: 14px;
-			}
-			.option-logo-box {
-				width: 88px;
-				height: 70px;
-				border-radius: 14px;
-			}
-			.option-title {
-				font-size: 13.5px;
-			}
-			.option-subtitle {
-				font-size: 10px;
-				padding: 2px 7px;
-			}
-			.delivery-hint-badge {
-				font-size: 11.5px;
-				padding: 6px 12px;
-				bottom: 8px;
-				right: 8px;
-			}
-			.delivery-close-btn {
-				top: 8px;
-				right: 8px;
-				width: 30px;
-				height: 30px;
-				font-size: 18px;
-			}
-		}
-
-		/* CELULARES MAIS ESTREITOS (ATÉ 400px) */
-		@media (max-width: 400px) {
-			.floating-title {
-				font-size: 18px;
-			}
-			.option-logo-box {
-				width: 78px;
-				height: 64px;
+				padding: 7px 4px;
+				gap: 4px;
 				border-radius: 12px;
+			}
+			.option-logo-box {
+				width: 74px;
+				height: 58px;
+				border-radius: 10px;
 			}
 			.option-title {
 				font-size: 12px;
 			}
 			.option-subtitle {
-				font-size: 9.5px;
+				font-size: 9px;
 				padding: 2px 5px;
+			}
+			.delivery-hint-badge {
+				font-size: 11px;
+				padding: 5px 10px;
+				bottom: 8px;
+				right: 8px;
+			}
+			.delivery-close-btn {
+				top: 6px;
+				right: 6px;
+				width: 26px;
+				height: 26px;
+				font-size: 15px;
+			}
+		}
+
+		@media (max-width: 400px) {
+			.floating-title {
+				font-size: 15px;
+			}
+			.option-logo-box {
+				width: 66px;
+				height: 52px;
+			}
+			.option-title {
+				font-size: 11px;
 			}
 		}
 
@@ -613,8 +603,7 @@
 			<img src="link-whatsapp.jpg" alt="Encomende pelo WhatsApp - Bolos Decorados e Kits Festa em Belford Roxo">
 		</a>
 
-
-				<!-- ==================== BANNER DE DELIVERY COM JANELA FLUTUANTE (INTERATIVO) ==================== -->
+		<!-- ==================== BANNER DE DELIVERY COM JANELA FLUTUANTE (INTERATIVO) ==================== -->
 		<div class="delivery-wrapper" id="deliveryWrapper">
 			<!-- Banner visual disparador -->
 			<div class="delivery-banner-trigger" id="deliveryTrigger" tabindex="0" role="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Abrir opções de delivery da Confeitaria Andressa Meireles">
@@ -627,12 +616,12 @@
 				</div>
 			</div>
 
-			<!-- JANELA FLUTUANTE DE ESCOLHA DE DELIVERY (FUNDO CLARO & ÍCONES GRANDES) -->
+			<!-- JANELA FLUTUANTE DE ESCOLHA DE DELIVERY (PERFEITAMENTE CENTRALIZADA) -->
 			<div class="delivery-floating-window" id="deliveryFloatingWindow" role="dialog" aria-modal="true" aria-label="Onde você deseja pedir?">
 				<!-- Botão de Fechar -->
 				<button type="button" class="delivery-close-btn" id="deliveryCloseBtn" aria-label="Fechar janela de delivery" title="Fechar">&times;</button>
 
-				<!-- Cabeçalho da Janela Flutuante (Maior e Mais Acima) -->
+				<!-- Cabeçalho da Janela Flutuante -->
 				<div class="floating-header">
 					<h3 class="floating-title">
 						<span>🛵 Onde você deseja pedir?</span>
@@ -640,21 +629,18 @@
 					<p class="floating-subtitle">Toque na sua plataforma preferida abaixo</p>
 				</div>
 
-				<!-- Grid com as 3 opções na ordem solicitada: 1. Delivery Direto, 2. iFood, 3. 99Food -->
+				<!-- Grid com as 3 opções centralizadas -->
 				<div class="delivery-options-grid">
 					
 					<!-- 1º LINK: DELIVERY DIRETO (PRÓPRIO - INSTADELIVERY) -->
 					<a href="https://instadelivery.com.br/andressameirelesconfeitaria" target="_blank" rel="noopener noreferrer" class="delivery-option-card card-proprio" id="btnDeliveryProprio" title="Pedir pelo Delivery Direto (Delivery Próprio)">
 						<div class="option-logo-box logo-proprio">
-							<!-- Ícone Grande e Legível: Delivery Direto / Próprio -->
 							<svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<!-- Ícone de Sacola / Loja no topo -->
 								<path d="M48 16L43 24V44C43 46.2 44.8 48 47 48H73C75.2 48 77 46.2 77 44V24L72 16H48Z" stroke="#FFD166" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(255, 209, 102, 0.15)"/>
 								<line x1="43" y1="24" x2="77" y2="24" stroke="#FFD166" stroke-width="3"/>
 								<path d="M66 30C66 33.3 63.3 36 60 36C56.7 36 54 33.3 54 30" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
-								<!-- Texto Legível dentro do Ícone -->
-								<text x="60" y="66" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif" font-weight="900" font-size="15" fill="#FFFFFF" letter-spacing="0.5">DELIVERY</text>
-								<text x="60" y="81" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif" font-weight="800" font-size="13" fill="#FFD166" letter-spacing="0.8">DIRETO</text>
+								<text x="60" y="66" text-anchor="middle" font-family="-apple-system, sans-serif" font-weight="900" font-size="15" fill="#FFFFFF" letter-spacing="0.5">DELIVERY</text>
+								<text x="60" y="81" text-anchor="middle" font-family="-apple-system, sans-serif" font-weight="800" font-size="13" fill="#FFD166" letter-spacing="0.8">DIRETO</text>
 							</svg>
 						</div>
 						<h4 class="option-title">Delivery Direto</h4>
@@ -664,11 +650,8 @@
 					<!-- 2º LINK: IFOOD -->
 					<a href="https://www.ifood.com.br/delivery/belford-roxo-rj/andressa-meireles-kits-festa-centro/2ac38b0f-d7ea-4295-8dc2-36e9d6ca0651" target="_blank" rel="noopener noreferrer" class="delivery-option-card card-ifood" id="btnIfood" title="Pedir pelo iFood">
 						<div class="option-logo-box logo-ifood">
-							<!-- Logomarca Grande e Legível: Escrito iFood + Sorriso Oficial -->
 							<svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<!-- Nome iFood bem grande e legível -->
-								<text x="60" y="42" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif" font-weight="900" font-size="31" fill="#FFFFFF" letter-spacing="-0.5">iFood</text>
-								<!-- Sorriso característico do iFood com seta -->
+								<text x="60" y="42" text-anchor="middle" font-family="-apple-system, sans-serif" font-weight="900" font-size="31" fill="#FFFFFF" letter-spacing="-0.5">iFood</text>
 								<circle cx="48" cy="54" r="3.8" fill="#FFFFFF"/>
 								<circle cx="68" cy="54" r="3.8" fill="#FFFFFF"/>
 								<path d="M36 65C43 75 56 78 70 75C76 73.5 81 70 85 65" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round"/>
@@ -682,13 +665,10 @@
 					<!-- 3º LINK: 99FOOD -->
 					<a href="https://oia.99app.com/dlp9/27W7hA?share_media=WHATSAPP" target="_blank" rel="noopener noreferrer" class="delivery-option-card card-99food" id="btn99food" title="Pedir pelo 99Food">
 						<div class="option-logo-box logo-99food">
-							<!-- Logomarca Grande e Legível: 99 + Escrito 99Food -->
 							<svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<!-- Destaque 99 Grande -->
-								<text x="60" y="47" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif" font-weight="900" font-size="42" fill="#23121C" letter-spacing="-1">99</text>
-								<!-- Faixa Escura com 99Food bem legível -->
+								<text x="60" y="47" text-anchor="middle" font-family="-apple-system, sans-serif" font-weight="900" font-size="42" fill="#23121C" letter-spacing="-1">99</text>
 								<rect x="14" y="56" width="92" height="24" rx="12" fill="#23121C"/>
-								<text x="60" y="73" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif" font-weight="900" font-size="16" fill="#FFD000" letter-spacing="0.4">99Food</text>
+								<text x="60" y="73" text-anchor="middle" font-family="-apple-system, sans-serif" font-weight="900" font-size="16" fill="#FFD000" letter-spacing="0.4">99Food</text>
 							</svg>
 						</div>
 						<h4 class="option-title">99Food</h4>
@@ -699,27 +679,10 @@
 			</div>
 		</div>
 
-
 		<!-- 2. LINK DA SHOPEE -->
 		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
 			<img src="banner-shopee.jpg" alt="Achadinhos na Shopee de Confeitaria - Utensílios e Formas com Andressa Meireles">
 		</a>
-	
-
-		<!-- ==================== BANNERS DESATIVADOS (COMENTADOS) ==================== -->
-		<!--
-		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
-			<img src="banner-shopee.jpg" alt="Equipamentos Profissionais de Confeitaria na Shopee">
-		</a>
-
-		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
-			<img src="banner-shopee.jpg" alt="Kits Festa Completos e Marmitinhas de Festa em Belford Roxo">
-		</a>
-
-		<a href="https://collshp.com/andressameireles?share_channel_code=1&view=storefront" target="_blank" class="banner-card">
-			<img src="banner-shopee.jpg" alt="Andressa Meireles Confeitaria Artesanal">
-		</a>
-		-->
 
 		<!-- RODAPÉ COM COPYRIGHT -->
 		<footer class="site-footer">
@@ -727,7 +690,6 @@
 		</footer>
 
 	</div>
-
 
 	<!-- SCRIPT DE INTERAÇÃO DA JANELA FLUTUANTE DE DELIVERY -->
 	<script>
@@ -738,7 +700,7 @@
 
 			if (!wrapper || !trigger) return;
 
-			// Alterna abertura no clique / toque (ideal para smartphones e tablets)
+			// Alterna abertura no clique / toque
 			trigger.addEventListener('click', function(e) {
 				const isOpen = wrapper.classList.contains('is-open');
 				if (isOpen) {
@@ -767,7 +729,7 @@
 				});
 			}
 
-			// Fechar se clicar fora no celular
+			// Fechar se clicar fora
 			document.addEventListener('click', function(e) {
 				if (!wrapper.contains(e.target)) {
 					wrapper.classList.remove('is-open');
