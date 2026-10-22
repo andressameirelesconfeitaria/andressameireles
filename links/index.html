@@ -101,7 +101,7 @@
 
 		body {
 			margin: 0;
-			padding: 20px 15px 80px 15px; /* Espaço do topo reduzido de 40px para 20px */
+			padding: 20px 15px 80px 15px;
 			min-height: 100vh;
 			background-color: #7d3b5a;
 			background-image: 
@@ -132,7 +132,7 @@
 			justify-content: center;
 			align-items: center;
 			text-decoration: none;
-			margin-bottom: 8px; /* Espaço entre a logo e o primeiro banner reduzido de 15px para 8px */
+			margin-bottom: 3px;
 			transition: transform 0.2s ease, opacity 0.2s ease;
 		}
 
@@ -143,14 +143,14 @@
 
 		/* ESTILIZAÇÃO DA SUA LOGO */
 		.profile-logo-img {
-			height: 95px; /* Tamanho no computador */
+			height: 95px;
 			width: auto;
 			max-width: 100%;
 			object-fit: contain;
 			filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); 
 		}
 
-		/* CARD DO BANNER COM PROPORÇÃO FIXA DE 16:9 */
+		/* CARD DO BANNER (Altura reduzida em aprox. 2% cortando suavemente topo e rodapé) */
 		.banner-card {
 			width: 100%;
 			display: block;
@@ -169,7 +169,7 @@
 		.banner-card img {
 			width: 100%;
 			height: auto;
-			aspect-ratio: 16 / 9;
+			aspect-ratio: 16 / 8.8;
 			object-fit: cover;
 			display: block;
 		}
@@ -191,7 +191,7 @@
 		/* AJUSTES EXCLUSIVOS PARA CELULAR (Telas até 600px) */
 		@media (max-width: 600px) {
 			.profile-logo-img {
-				height: 70px; /* Ajuste para 70px no celular */
+				height: 70px;
 			}
 		}
 	
@@ -225,7 +225,7 @@
 		.delivery-banner-trigger img {
 			width: 100%;
 			height: auto;
-			aspect-ratio: 16 / 9;
+			aspect-ratio: 16 / 8.8;
 			object-fit: cover;
 			display: block;
 			transition: transform 0.4s ease, filter 0.4s ease;
