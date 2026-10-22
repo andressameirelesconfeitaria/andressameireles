@@ -195,7 +195,7 @@
 			}
 		}
 	
-		/* ==================== NOVO: BANNER DE DELIVERY COM JANELA FLUTUANTE ==================== */
+		/* ==================== NOVO: BANNER DE DELIVERY COM JANELA FLUTUANTE TRANSPARENTE (GLASSMORPHISM) ==================== */
 		.delivery-wrapper {
 			position: relative;
 			width: 100%;
@@ -212,13 +212,14 @@
 			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 			transition: transform 0.25s ease, box-shadow 0.25s ease;
 			border: 2px solid transparent;
+			-webkit-tap-highlight-color: transparent;
 		}
 
 		.delivery-banner-trigger:hover,
 		.delivery-wrapper.is-open .delivery-banner-trigger {
 			transform: translateY(-3px);
-			box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55), 0 0 25px rgba(224, 122, 156, 0.35);
-			border-color: rgba(241, 207, 221, 0.45);
+			box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55), 0 0 25px rgba(255, 255, 255, 0.25);
+			border-color: rgba(255, 255, 255, 0.65);
 		}
 
 		.delivery-banner-trigger img {
@@ -230,10 +231,11 @@
 			transition: transform 0.4s ease, filter 0.4s ease;
 		}
 
+		/* Mantém a imagem do banner clara e visível ao fundo, apenas com leve desfoque suave */
 		.delivery-wrapper:hover .delivery-banner-trigger img,
 		.delivery-wrapper.is-open .delivery-banner-trigger img {
-			transform: scale(1.02);
-			filter: brightness(0.82);
+			transform: scale(1.03);
+			filter: blur(2px) brightness(1.02);
 		}
 
 		/* TAG HINT INFORMATIVA NO BANNER (PULSANTE) */
@@ -241,19 +243,19 @@
 			position: absolute;
 			bottom: 14px;
 			right: 14px;
-			background: rgba(35, 18, 28, 0.90);
-			backdrop-filter: blur(8px);
-			-webkit-backdrop-filter: blur(8px);
-			color: #ffffff;
+			background: rgba(255, 255, 255, 0.92);
+			backdrop-filter: blur(6px);
+			-webkit-backdrop-filter: blur(6px);
+			color: #4a1530;
 			padding: 8px 16px;
 			border-radius: 30px;
 			font-size: 13px;
-			font-weight: 600;
+			font-weight: 700;
 			display: flex;
 			align-items: center;
 			gap: 8px;
-			box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
-			border: 1px solid rgba(255, 255, 255, 0.25);
+			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+			border: 1.5px solid rgba(255, 255, 255, 0.9);
 			pointer-events: none;
 			transition: opacity 0.25s ease, transform 0.25s ease;
 		}
@@ -267,109 +269,130 @@
 		.pulse-indicator {
 			width: 10px;
 			height: 10px;
-			background-color: #4ade80;
+			background-color: #16a34a;
 			border-radius: 50%;
-			box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+			box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
 			animation: pulse-ring 1.8s infinite;
 		}
 
 		@keyframes pulse-ring {
 			0% {
 				transform: scale(0.95);
-				box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+				box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
 			}
 			70% {
 				transform: scale(1);
-				box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);
+				box-shadow: 0 0 0 8px rgba(22, 163, 74, 0);
 			}
 			100% {
 				transform: scale(0.95);
-				box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+				box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
 			}
 		}
 
-		/* JANELA FLUTUANTE (POPUP / OVERLAY) */
+		/* JANELA FLUTUANTE TRANSPARENTE (MANTÉM A IMAGEM DO BANNER VISÍVEL AO FUNDO) */
 		.delivery-floating-window {
 			position: absolute;
-			inset: 0;
-			background: rgba(28, 13, 22, 0.92);
-			backdrop-filter: blur(14px);
-			-webkit-backdrop-filter: blur(14px);
+			top: 50%;
+			left: 0;
+			right: 0;
+			min-height: 100%;
+			height: auto;
+			background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 245, 238, 0.28) 100%);
+			backdrop-filter: blur(5px) saturate(115%);
+			-webkit-backdrop-filter: blur(5px) saturate(115%);
 			border-radius: 18px;
-			border: 1.5px solid rgba(255, 255, 255, 0.22);
+			border: 1.5px solid rgba(255, 255, 255, 0.65);
 			display: flex;
 			flex-direction: column;
-			justify-content: center;
+			justify-content: flex-start;
 			align-items: center;
-			padding: 20px 24px;
+			padding: 14px 20px 18px 20px;
 			box-sizing: border-box;
 			opacity: 0;
 			visibility: hidden;
-			transform: scale(0.96) translateY(4px);
-			transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-			            visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-			            transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-			z-index: 30;
-			box-shadow: inset 0 0 30px rgba(0,0,0,0.4), 0 20px 40px rgba(0,0,0,0.6);
+			transform: translateY(-48%) scale(0.96);
+			transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+			            visibility 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+			            transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+			z-index: 40;
+			box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.4) inset;
 		}
 
-		/* MOSTRAR AO PASSAR O MOUSE (DESKTOP) OU AO CLICAR (MOBILE / IS-OPEN) */
+		/* MOSTRAR AO PASSAR O MOUSE (DESKTOP) OU AO CLICAR/TOCAR (MOBILE / IS-OPEN) */
 		.delivery-wrapper:hover .delivery-floating-window,
 		.delivery-wrapper.is-open .delivery-floating-window {
 			opacity: 1;
 			visibility: visible;
-			transform: scale(1) translateY(0);
+			transform: translateY(-50%) scale(1);
 		}
 
-		/* BOTÃO FECHAR (ESPECIALMENTE ÚTIL NO CELULAR) */
+		/* BOTÃO FECHAR (TRANSLÚCIDO E ELEGANTE) */
 		.delivery-close-btn {
 			position: absolute;
-			top: 12px;
-			right: 14px;
-			background: rgba(255, 255, 255, 0.12);
-			border: 1px solid rgba(255, 255, 255, 0.25);
-			color: #ffffff;
-			width: 32px;
-			height: 32px;
+			top: 10px;
+			right: 12px;
+			background: rgba(255, 255, 255, 0.85);
+			backdrop-filter: blur(6px);
+			-webkit-backdrop-filter: blur(6px);
+			border: 1.5px solid rgba(255, 255, 255, 0.95);
+			color: #4a122c;
+			width: 34px;
+			height: 34px;
 			border-radius: 50%;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			cursor: pointer;
-			font-size: 18px;
+			font-size: 20px;
+			font-weight: 800;
 			line-height: 1;
-			transition: background 0.2s, transform 0.2s;
-			z-index: 35;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+			transition: background 0.2s, color 0.2s, transform 0.2s;
+			z-index: 45;
 		}
 
 		.delivery-close-btn:hover {
-			background: rgba(255, 255, 255, 0.28);
-			transform: rotate(90deg) scale(1.1);
+			background: #4a122c;
+			color: #ffffff;
+			transform: rotate(90deg) scale(1.08);
 		}
 
+		/* CABEÇALHO EM CÁPSULA TRANSLÚCIDA NO TOPO PARA LEITURA PERFEITA SOBRE A IMAGEM */
 		.floating-header {
 			text-align: center;
-			margin-bottom: 16px;
+			margin-top: 0;
+			margin-bottom: 14px;
+			background: rgba(255, 255, 255, 0.82);
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
+			padding: 6px 22px 8px 22px;
+			border-radius: 40px;
+			border: 1.5px solid rgba(255, 255, 255, 0.95);
+			box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+			max-width: 90%;
+			box-sizing: border-box;
 		}
 
 		.floating-title {
 			margin: 0;
-			color: #ffffff;
-			font-size: 19px;
-			font-weight: 700;
-			letter-spacing: 0.3px;
-			text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+			color: #3b0d22;
+			font-size: 24px;
+			font-weight: 900;
+			letter-spacing: -0.3px;
+			line-height: 1.2;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			gap: 8px;
+			text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 		}
 
 		.floating-subtitle {
-			margin: 4px 0 0 0;
-			color: #f1cfdd;
+			margin: 2px 0 0 0;
+			color: #6d2446;
 			font-size: 13px;
-			opacity: 0.95;
+			font-weight: 700;
 		}
 
 		/* GRADE DAS 3 OPÇÕES FLUTUANTES */
@@ -378,240 +401,197 @@
 			grid-template-columns: repeat(3, 1fr);
 			gap: 16px;
 			width: 100%;
-			max-width: 760px;
+			max-width: 780px;
 		}
 
-		/* CARD INDIVIDUAL DE CADA PLATAFORMA */
+		/* CARD INDIVIDUAL DE CADA PLATAFORMA (VIDRO TRANSLÚCIDO) */
 		.delivery-option-card {
 			position: relative;
-			background: rgba(255, 255, 255, 0.08);
-			border: 1.5px solid rgba(255, 255, 255, 0.18);
-			border-radius: 14px;
-			padding: 14px 10px;
+			background: rgba(255, 255, 255, 0.68);
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
+			border: 2px solid rgba(255, 255, 255, 0.9);
+			border-radius: 18px;
+			padding: 12px 10px;
 			text-decoration: none;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+			justify-content: center;
 			text-align: center;
-			gap: 8px;
+			gap: 7px;
 			transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
 			            box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
 			            border-color 0.25s ease,
 			            background 0.25s ease;
-			box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-			overflow: hidden;
-		}
-
-		.delivery-option-card::before {
-			content: "";
-			position: absolute;
-			inset: 0;
-			background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.18), transparent 70%);
-			opacity: 0;
-			transition: opacity 0.25s ease;
-			pointer-events: none;
+			box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+			-webkit-tap-highlight-color: transparent;
 		}
 
 		.delivery-option-card:hover {
-			transform: translateY(-6px) scale(1.03);
-			background: rgba(255, 255, 255, 0.14);
+			transform: translateY(-6px) scale(1.04);
+			background: rgba(255, 255, 255, 0.92);
 		}
 
-		.delivery-option-card:hover::before {
-			opacity: 1;
-		}
-
-		/* LOGO / ÍCONE FLUTUANTE DE CADA PLATAFORMA */
+		/* CAIXA DO ÍCONE / LOGOMARCA BEM GRANDE E LEGÍVEL */
 		.option-logo-box {
-			width: 58px;
-			height: 58px;
-			border-radius: 14px;
+			width: 114px;
+			height: 86px;
+			border-radius: 18px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
 			transition: transform 0.25s ease, box-shadow 0.25s ease;
 			flex-shrink: 0;
+			overflow: hidden;
+		}
+
+		.option-logo-box svg {
+			width: 100%;
+			height: 100%;
+			display: block;
 		}
 
 		.delivery-option-card:hover .option-logo-box {
-			transform: scale(1.08) rotate(-2deg);
-			box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
+			transform: scale(1.06);
+			box-shadow: 0 12px 26px rgba(0, 0, 0, 0.3);
 		}
 
 		/* ESTILOS POR MARCA */
-		/* 1. DELIVERY PRÓPRIO */
-		.card-proprio {
-			border-color: rgba(224, 122, 156, 0.35);
-		}
+		/* 1. DELIVERY DIRETO (PRÓPRIO) */
 		.card-proprio:hover {
 			border-color: #ffd166;
-			box-shadow: 0 12px 28px rgba(184, 82, 130, 0.4), 0 0 20px rgba(255, 209, 102, 0.3);
+			box-shadow: 0 14px 30px rgba(140, 38, 86, 0.35);
 		}
 		.logo-proprio {
-			background: linear-gradient(135deg, #b85282 0%, #6b2146 100%);
-			border: 1.5px solid rgba(255, 209, 102, 0.6);
+			background: linear-gradient(135deg, #9e2a5b 0%, #561230 100%);
+			border: 2px solid #ffd166;
 		}
 
 		/* 2. IFOOD */
-		.card-ifood {
-			border-color: rgba(234, 29, 44, 0.35);
-		}
 		.card-ifood:hover {
 			border-color: #ea1d2c;
-			box-shadow: 0 12px 28px rgba(234, 29, 44, 0.45), 0 0 20px rgba(234, 29, 44, 0.3);
+			box-shadow: 0 14px 30px rgba(234, 29, 44, 0.35);
 		}
 		.logo-ifood {
 			background: #ea1d2c;
-			border: 1.5px solid rgba(255, 255, 255, 0.3);
+			border: 2px solid rgba(255, 255, 255, 0.85);
 		}
 
 		/* 3. 99FOOD */
-		.card-99food {
-			border-color: rgba(255, 140, 0, 0.35);
-		}
 		.card-99food:hover {
 			border-color: #ff9900;
-			box-shadow: 0 12px 28px rgba(255, 140, 0, 0.45), 0 0 20px rgba(255, 153, 0, 0.3);
+			box-shadow: 0 14px 30px rgba(255, 136, 0, 0.35);
 		}
 		.logo-99food {
-			background: linear-gradient(135deg, #ffaa00 0%, #ff6600 100%);
-			border: 1.5px solid rgba(255, 255, 255, 0.3);
+			background: linear-gradient(135deg, #ffcc00 0%, #ff7700 100%);
+			border: 2px solid rgba(255, 255, 255, 0.85);
 		}
 
-		/* TEXTOS DOS CARDS */
+		/* TEXTOS ABAIXO DO ÍCONE */
 		.option-title {
-			color: #ffffff;
-			font-size: 15px;
-			font-weight: 700;
-			letter-spacing: 0.3px;
-			margin: 0;
+			color: #260a17;
+			font-size: 16px;
+			font-weight: 900;
+			letter-spacing: -0.2px;
+			margin: 2px 0 0 0;
+			line-height: 1.2;
+			text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
 		}
 
-		.option-tag {
-			font-size: 11px;
-			padding: 3px 8px;
-			border-radius: 12px;
-			font-weight: 600;
-			letter-spacing: 0.2px;
+		.option-subtitle {
+			font-size: 12px;
+			font-weight: 800;
+			margin: 0;
+			padding: 3px 10px;
+			border-radius: 20px;
 			white-space: nowrap;
 		}
 
-		.tag-proprio {
-			background: rgba(255, 209, 102, 0.2);
+		.sub-proprio {
+			background: #7a1c45;
 			color: #ffd166;
-			border: 1px solid rgba(255, 209, 102, 0.4);
 		}
 
-		.tag-ifood {
-			background: rgba(234, 29, 44, 0.2);
-			color: #ff858e;
-			border: 1px solid rgba(234, 29, 44, 0.4);
-		}
-
-		.tag-99food {
-			background: rgba(255, 170, 0, 0.2);
-			color: #ffb84d;
-			border: 1px solid rgba(255, 170, 0, 0.4);
-		}
-
-		.option-btn-text {
+		.sub-ifood {
+			background: #ea1d2c;
 			color: #ffffff;
-			font-size: 11px;
-			font-weight: 600;
-			background: rgba(255, 255, 255, 0.15);
-			padding: 4px 10px;
-			border-radius: 20px;
-			display: inline-flex;
-			align-items: center;
-			gap: 4px;
-			transition: background 0.2s, transform 0.2s;
 		}
 
-		.delivery-option-card:hover .option-btn-text {
-			background: #ffffff;
-			color: #23121c;
-			transform: scale(1.05);
+		.sub-99food {
+			background: #23121c;
+			color: #ffcc00;
 		}
 
-		/* RESPONSIVIDADE PARA CELULAR (TELAS ATÉ 680px) */
+		/* RESPONSIVIDADE PARA CELULAR (FOCO EM LEITURA GRANDE E CLARA NO MOBILE) */
 		@media (max-width: 680px) {
 			.delivery-floating-window {
-				padding: 12px 10px;
+				padding: 12px 10px 14px 10px;
+				border-radius: 18px;
 			}
 			.floating-header {
-				margin-bottom: 8px;
+				margin-top: 0;
+				margin-bottom: 10px;
+				padding: 5px 16px 6px 16px;
 			}
 			.floating-title {
-				font-size: 15px;
+				font-size: 20px;
 			}
 			.floating-subtitle {
-				font-size: 11px;
+				font-size: 11.5px;
 			}
 			.delivery-options-grid {
 				gap: 8px;
 			}
 			.delivery-option-card {
-				padding: 8px 4px;
-				gap: 4px;
-				border-radius: 10px;
+				padding: 9px 5px;
+				gap: 5px;
+				border-radius: 14px;
 			}
 			.option-logo-box {
-				width: 40px;
-				height: 40px;
-				border-radius: 10px;
-			}
-			.option-logo-box svg {
-				width: 24px;
-				height: 24px;
+				width: 88px;
+				height: 70px;
+				border-radius: 14px;
 			}
 			.option-title {
-				font-size: 12px;
+				font-size: 13.5px;
 			}
-			.option-tag {
-				font-size: 9px;
-				padding: 2px 5px;
-			}
-			.option-btn-text {
+			.option-subtitle {
 				font-size: 10px;
-				padding: 3px 6px;
+				padding: 2px 7px;
 			}
 			.delivery-hint-badge {
-				font-size: 11px;
-				padding: 5px 10px;
+				font-size: 11.5px;
+				padding: 6px 12px;
 				bottom: 8px;
 				right: 8px;
 			}
 			.delivery-close-btn {
 				top: 8px;
 				right: 8px;
-				width: 26px;
-				height: 26px;
-				font-size: 14px;
+				width: 30px;
+				height: 30px;
+				font-size: 18px;
 			}
 		}
 
-		/* CELULARES MAIS COMPACTOS (ATÉ 420px) */
-		@media (max-width: 420px) {
-			.floating-subtitle {
-				display: none;
-			}
-			.option-tag {
-				display: none;
-			}
-			.option-btn-text {
-				display: none;
+		/* CELULARES MAIS ESTREITOS (ATÉ 400px) */
+		@media (max-width: 400px) {
+			.floating-title {
+				font-size: 18px;
 			}
 			.option-logo-box {
-				width: 36px;
-				height: 36px;
-			}
-			.option-logo-box svg {
-				width: 20px;
-				height: 20px;
+				width: 78px;
+				height: 64px;
+				border-radius: 12px;
 			}
 			.option-title {
-				font-size: 11px;
+				font-size: 12px;
+			}
+			.option-subtitle {
+				font-size: 9.5px;
+				padding: 2px 5px;
 			}
 		}
 
@@ -634,79 +614,85 @@
 		</a>
 
 
-		<!-- ==================== BANNER DE DELIVERY COM JANELA FLUTUANTE (INTERATIVO) ==================== -->
+				<!-- ==================== BANNER DE DELIVERY COM JANELA FLUTUANTE (INTERATIVO) ==================== -->
 		<div class="delivery-wrapper" id="deliveryWrapper">
 			<!-- Banner visual disparador -->
 			<div class="delivery-banner-trigger" id="deliveryTrigger" tabindex="0" role="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Abrir opções de delivery da Confeitaria Andressa Meireles">
-				<img src="link-instadelivery.jpg" alt="Peça no Delivery - Confeitaria Andressa Meireles: Delivery Próprio, iFood e 99Food">
+				<img src="link-instadelivery.jpg" alt="Peça no Delivery - Confeitaria Andressa Meireles: Delivery Direto, iFood e 99Food">
 				
 				<!-- Badge de dica interativa -->
 				<div class="delivery-hint-badge">
 					<span class="pulse-indicator"></span>
-					<span>Passe o mouse ou clique para pedir</span>
+					<span>Toque ou passe o mouse para pedir</span>
 				</div>
 			</div>
 
-			<!-- JANELA FLUTUANTE DE ESCOLHA DE DELIVERY -->
-			<div class="delivery-floating-window" id="deliveryFloatingWindow" role="dialog" aria-modal="true" aria-label="Escolha sua plataforma de delivery">
+			<!-- JANELA FLUTUANTE DE ESCOLHA DE DELIVERY (FUNDO CLARO & ÍCONES GRANDES) -->
+			<div class="delivery-floating-window" id="deliveryFloatingWindow" role="dialog" aria-modal="true" aria-label="Onde você deseja pedir?">
 				<!-- Botão de Fechar -->
 				<button type="button" class="delivery-close-btn" id="deliveryCloseBtn" aria-label="Fechar janela de delivery" title="Fechar">&times;</button>
 
-				<!-- Cabeçalho da Janela Flutuante -->
+				<!-- Cabeçalho da Janela Flutuante (Maior e Mais Acima) -->
 				<div class="floating-header">
 					<h3 class="floating-title">
 						<span>🛵 Onde você deseja pedir?</span>
 					</h3>
-					<p class="floating-subtitle">Selecione seu aplicativo ou plataforma preferida</p>
+					<p class="floating-subtitle">Toque na sua plataforma preferida abaixo</p>
 				</div>
 
-				<!-- Grid com as 3 opções flutuantes -->
+				<!-- Grid com as 3 opções na ordem solicitada: 1. Delivery Direto, 2. iFood, 3. 99Food -->
 				<div class="delivery-options-grid">
 					
-					<!-- OPÇÃO 1: DELIVERY PRÓPRIO (INSTADELIVERY) -->
-					<a href="https://instadelivery.com.br/andressameirelesconfeitaria" target="_blank" rel="noopener noreferrer" class="delivery-option-card card-proprio" id="btnDeliveryProprio" title="Pedir pelo Delivery Próprio Oficial">
+					<!-- 1º LINK: DELIVERY DIRETO (PRÓPRIO - INSTADELIVERY) -->
+					<a href="https://instadelivery.com.br/andressameirelesconfeitaria" target="_blank" rel="noopener noreferrer" class="delivery-option-card card-proprio" id="btnDeliveryProprio" title="Pedir pelo Delivery Direto (Delivery Próprio)">
 						<div class="option-logo-box logo-proprio">
-							<!-- Logomarca Delivery Próprio (Confeitaria & Sacola de Pedido Oficial) -->
-							<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color: #ffd166;">
-								<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-								<line x1="3" y1="6" x2="21" y2="6"/>
-								<path d="M16 10a4 4 0 0 1-8 0"/>
+							<!-- Ícone Grande e Legível: Delivery Direto / Próprio -->
+							<svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<!-- Ícone de Sacola / Loja no topo -->
+								<path d="M48 16L43 24V44C43 46.2 44.8 48 47 48H73C75.2 48 77 46.2 77 44V24L72 16H48Z" stroke="#FFD166" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(255, 209, 102, 0.15)"/>
+								<line x1="43" y1="24" x2="77" y2="24" stroke="#FFD166" stroke-width="3"/>
+								<path d="M66 30C66 33.3 63.3 36 60 36C56.7 36 54 33.3 54 30" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+								<!-- Texto Legível dentro do Ícone -->
+								<text x="60" y="66" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif" font-weight="900" font-size="15" fill="#FFFFFF" letter-spacing="0.5">DELIVERY</text>
+								<text x="60" y="81" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif" font-weight="800" font-size="13" fill="#FFD166" letter-spacing="0.8">DIRETO</text>
 							</svg>
 						</div>
-						<span class="option-tag tag-proprio">Melhor Preço</span>
-						<h4 class="option-title">Delivery Próprio</h4>
-						<span class="option-btn-text">Pedir Agora &rarr;</span>
+						<h4 class="option-title">Delivery Direto</h4>
+						<span class="option-subtitle sub-proprio">Delivery Próprio</span>
 					</a>
 
-					<!-- OPÇÃO 2: IFOOD -->
-					<a href="https://www.ifood.com.br/delivery/belford-roxo-rj/andressa-meireles-kits-festa-centro/2ac38b0f-d7ea-4295-8dc2-36e9d6ca0651" target="_blank" rel="noopener noreferrer" class="delivery-option-card card-ifood" id="btnIfood" title="Pedir pelo aplicativo iFood">
+					<!-- 2º LINK: IFOOD -->
+					<a href="https://www.ifood.com.br/delivery/belford-roxo-rj/andressa-meireles-kits-festa-centro/2ac38b0f-d7ea-4295-8dc2-36e9d6ca0651" target="_blank" rel="noopener noreferrer" class="delivery-option-card card-ifood" id="btnIfood" title="Pedir pelo iFood">
 						<div class="option-logo-box logo-ifood">
-							<!-- Logomarca Oficial iFood (Smile Emblem) -->
-							<svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M26 38C26 34.6863 28.6863 32 32 32C35.3137 32 38 34.6863 38 38C38 41.3137 35.3137 44 32 44C28.6863 44 26 41.3137 26 38Z" fill="white"/>
-								<path d="M62 38C62 34.6863 64.6863 32 68 32C71.3137 32 74 34.6863 74 38C74 41.3137 71.3137 44 68 44C64.6863 44 62 41.3137 62 38Z" fill="white"/>
-								<path d="M20 54C20 54 32 68 50 68C68 68 80 54 80 54" stroke="white" stroke-width="9" stroke-linecap="round"/>
+							<!-- Logomarca Grande e Legível: Escrito iFood + Sorriso Oficial -->
+							<svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<!-- Nome iFood bem grande e legível -->
+								<text x="60" y="42" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif" font-weight="900" font-size="31" fill="#FFFFFF" letter-spacing="-0.5">iFood</text>
+								<!-- Sorriso característico do iFood com seta -->
+								<circle cx="48" cy="54" r="3.8" fill="#FFFFFF"/>
+								<circle cx="68" cy="54" r="3.8" fill="#FFFFFF"/>
+								<path d="M36 65C43 75 56 78 70 75C76 73.5 81 70 85 65" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round"/>
+								<path d="M77 64H86V73" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 							</svg>
 						</div>
-						<span class="option-tag tag-ifood">App iFood</span>
 						<h4 class="option-title">iFood</h4>
-						<span class="option-btn-text">Pedir no iFood &rarr;</span>
+						<span class="option-subtitle sub-ifood">Pedir no iFood</span>
 					</a>
 
-					<!-- OPÇÃO 3: 99FOOD -->
-					<!-- Link para 99Food: Substitua pelo link direto da sua loja se possuir -->
-					<a href="https://food.99app.com/" target="_blank" rel="noopener noreferrer" class="delivery-option-card card-99food" id="btn99food" title="Pedir pelo aplicativo 99Food">
+					<!-- 3º LINK: 99FOOD -->
+					<a href="https://oia.99app.com/dlp9/27W7hA?share_media=WHATSAPP" target="_blank" rel="noopener noreferrer" class="delivery-option-card card-99food" id="btn99food" title="Pedir pelo 99Food">
 						<div class="option-logo-box logo-99food">
-							<!-- Logomarca Oficial 99Food -->
-							<svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<rect width="100" height="100" rx="20" fill="transparent"/>
-								<text x="50%" y="46%" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="42" fill="white">99</text>
-								<text x="50%" y="76%" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="18" fill="white" letter-spacing="1">FOOD</text>
+							<!-- Logomarca Grande e Legível: 99 + Escrito 99Food -->
+							<svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<!-- Destaque 99 Grande -->
+								<text x="60" y="47" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif" font-weight="900" font-size="42" fill="#23121C" letter-spacing="-1">99</text>
+								<!-- Faixa Escura com 99Food bem legível -->
+								<rect x="14" y="56" width="92" height="24" rx="12" fill="#23121C"/>
+								<text x="60" y="73" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif" font-weight="900" font-size="16" fill="#FFD000" letter-spacing="0.4">99Food</text>
 							</svg>
 						</div>
-						<span class="option-tag tag-99food">App 99Food</span>
 						<h4 class="option-title">99Food</h4>
-						<span class="option-btn-text">Pedir no 99 &rarr;</span>
+						<span class="option-subtitle sub-99food">Pedir no 99Food</span>
 					</a>
 
 				</div>
