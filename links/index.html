@@ -104,7 +104,7 @@
 
 		body {
 			margin: 0;
-			padding: 40px 15px 80px 15px;
+			padding: 18px 15px 80px 15px;
 			min-height: 100vh;
 			background-color: #7d3b5a;
 			background-image: 
@@ -135,7 +135,8 @@
 			justify-content: center;
 			align-items: center;
 			text-decoration: none;
-			margin-bottom: 15px;
+			margin-top: 0;
+			margin-bottom: -4px;
 			transition: transform 0.2s ease, opacity 0.2s ease;
 		}
 
@@ -193,6 +194,12 @@
 
 		/* AJUSTES EXCLUSIVOS PARA CELULAR (Telas até 600px) */
 		@media (max-width: 600px) {
+			body {
+				padding: 12px 15px 60px 15px;
+			}
+			.profile-header {
+				margin-bottom: -6px;
+			}
 			.profile-logo-img {
 				height: 70px; /* Ajuste para 70px no celular */
 			}
