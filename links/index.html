@@ -950,6 +950,26 @@
 			});
 		})();
 	</script>
+	<!-- Aqui fica o restante do código da sua página e o seu botão -->
+    <a href="#" id="whatsapp-btn">Fale Conosco</a>
+
+  </div> <!-- Fim das divs do site -->
+
+  <!-- COLE O SCRIPT AQUI EMBAIXO, BEM ANTES DO </body> -->
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmSource = urlParams.get('utm_source');
+    const whatsappBtn = document.getElementById('whatsapp-btn');
+
+    if (utmSource === 'google') {
+      whatsappBtn.href = "https://wa.me/5521SEUNUMERO?text=Olá!%20Vi%20seu%20anúncio%20no%20Google%20e%20quero%20consultar%20a%20pronta%20entrega.";
+    } else {
+      whatsappBtn.href = "https://wa.me/5521SEUNUMERO?text=Olá!%20Vim%20pelo%20Instagram%20e%20gostaria%20de%20encomendar%20um%20bolo.";
+    }
+  </script>
+
+</body>
+</html>
 
 </body>
 </html>
