@@ -4,22 +4,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	
-	
 	<!-- ==================== OTIMIZAÇÃO AVANÇADA DE SEO (GOOGLE & BUSCAS LOCAIS) ==================== -->
 	<title>Andressa Meireles Confeitaria | Kit Festa, Bolos Decorados e Salgados em Belford Roxo</title>
 
-	<!-- VERIFICAÇÃO GOOGLE WHATSAPP -->
+	<!-- Meta Verificação do Domínio no Google Search Console -->
 	<meta name="google-site-verification" content="bdNcJbzNtTBEY2-wVTYlnkcMeknDoYL7cfyqXe9Tv4g" />
-	<!-- VERIFICAÇÃO INSTADELIVERY -->
 	<meta name="google-site-verification" content="usaFTSCsBjAWmD6vRakiH_zRrhDQC8v0MTV39ikP5_s" />
-	<!-- VERIFICAÇÃO IFOOD -->
 	<meta name="google-site-verification" content="KcFr4uGGiNctjhywts2hhazp5OULmwVE6cM64BP3KIQ" />
-	<!-- VERIFICAÇÃO 99FOOD -->
-	<meta name="google-site-verification" content="KcFr4uGGiNctjhywts2hhazp5OULmwVE6cM64BP3KIQ" />
-	<!-- VERIFICAÇÃO LOJA SHOPEE -->
 	<meta name="google-site-verification" content="rFzNQIvyQter24Nut99BX1uDbacdvgWwVzymPU0nE9Q" />
-	<!-- VERIFICAÇÃO INSTAGRAM -->
 	<meta name="google-site-verification" content="-05ta1Zm16HTHa3WPG61qVyGSo_1RzEQOZwHTdrLLV4" />
 	
 	<!-- Meta Descrição Otimizada (Meta Description) -->
@@ -30,19 +22,59 @@
 	
 	<meta name="author" content="Andressa Meireles Confeitaria">
 	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-	<link rel="canonical" href="https://andressameireles.com.br">
+	<link rel="canonical" href="https://andressameireles.com.br/links">
 
-	<!-- ==================== IMPLEMENTAÇÃO 1: GOOGLE ANALYTICS 4 (GA4) & GOOGLE ADS (GTAG) ==================== -->
-	<!-- Substitua 'G-XXXXXXXXXX' pelo seu ID do GA4 e/ou 'AW-XXXXXXXXXX' pelo seu ID de Conversão do Google Ads -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+	<!-- ==================== GOOGLE ANALYTICS 4 (GA4) & RASTREAMENTO DE BANNERS ==================== -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-RELBSW5DF5"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
 
-		// Configuração padrão do GA4 e Google Ads (mantém compatibilidade com o contador do Google Ads)
-		gtag('config', 'G-XXXXXXXXXX', { 'send_page_view': true });
-		// gtag('config', 'AW-XXXXXXXXXX'); // Descomente e coloque seu ID do Google Ads se utilizar tag AW-
+		// Configuração ativa com o seu ID do GA4
+		gtag('config', 'G-RELBSW5DF5', { 'send_page_view': true });
+
+		// Detector Automático de Cliques nos Banners (WhatsApp, Delivery, Shopee e Redes)
+		document.addEventListener('click', function(event) {
+			var link = event.target.closest('a');
+			if (!link || !link.href) return;
+
+			var url = link.href.toLowerCase();
+			var nomeEvento = '';
+			var canal = '';
+
+			if (url.includes('wa.me') || url.includes('whatsapp.com') || url.includes('api.whatsapp')) {
+				nomeEvento = 'clique_whatsapp';
+				canal = 'WhatsApp';
+			} else if (url.includes('ifood.com')) {
+				nomeEvento = 'clique_ifood';
+				canal = 'iFood';
+			} else if (url.includes('99app.com') || url.includes('99food')) {
+				nomeEvento = 'clique_99food';
+				canal = '99Food';
+			} else if (url.includes('deliverymuch.com')) {
+				nomeEvento = 'clique_deliverymuch';
+				canal = 'Delivery Much';
+			} else if (url.includes('instadelivery.com') || url.includes('cardapio') || url.includes('delivery')) {
+				nomeEvento = 'clique_delivery_direto';
+				canal = 'InstaDelivery / Direto';
+			} else if (url.includes('shopee.com')) {
+				nomeEvento = 'clique_shopee';
+				canal = 'Shopee';
+			} else if (url.includes('instagram.com')) {
+				nomeEvento = 'clique_instagram';
+				canal = 'Instagram';
+			}
+
+			// Dispara o evento para o GA4 antes de redirecionar para a aplicação externa
+			if (nomeEvento !== '' && typeof gtag === 'function') {
+				gtag('event', nomeEvento, {
+					'canal_destino': canal,
+					'url_clicada': link.href,
+					'transport_type': 'beacon'
+				});
+			}
+		});
 	</script>
 
 
