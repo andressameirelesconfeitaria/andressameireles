@@ -25,14 +25,16 @@
 	<link rel="canonical" href="https://andressameireles.com.br/links">
 
 	<!-- ==================== GOOGLE ANALYTICS 4 (GA4) & RASTREAMENTO DE BANNERS ==================== -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-RELBSW5DF5"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
 
+		// Configuração ativa com o seu ID do GA4
 		gtag('config', 'G-RELBSW5DF5', { 'send_page_view': true });
 
-		// Detector Automático Atualizado (Incluindo collshp.com da Shopee)
+		// Detector Automático (Demais canais, com a Shopee removida para evitar duplicação)
 		document.addEventListener('click', function(event) {
 			var link = event.target.closest('a');
 			if (!link || !link.href) return;
@@ -56,14 +58,12 @@
 			} else if (url.includes('instadelivery.com') || url.includes('cardapio') || url.includes('delivery')) {
 				nomeEvento = 'clique_delivery_direto';
 				canal = 'InstaDelivery / Direto';
-			} else if (url.includes('shopee.com') || url.includes('collshp.com')) {
-				nomeEvento = 'clique_shopee';
-				canal = 'Shopee / Vitrine';
 			} else if (url.includes('instagram.com')) {
 				nomeEvento = 'clique_instagram';
 				canal = 'Instagram';
 			}
 
+			// Dispara o evento para o GA4 antes de redirecionar para a aplicação externa
 			if (nomeEvento !== '' && typeof gtag === 'function') {
 				gtag('event', nomeEvento, {
 					'canal_destino': canal,
