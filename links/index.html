@@ -1273,23 +1273,23 @@
 
 	<!-- ==================== VERIFICAÇÃO DO GOOGLE ADS / INSTAGRAM + AS DUAS IMPLEMENTAÇÕES DE CONTADOR NOS BANNERS EXISTENTES ==================== -->
 	<script>
-		/*
-		 * 1. ESTRUTURA ORIGINAL DE VERIFICAÇÃO (GOOGLE ADS VS INSTAGRAM NO BANNER DE WHATSAPP)
-		 */
-		const urlParams = new URLSearchParams(window.location.search);
-		const utmSource = urlParams.get('utm_source');
-		const whatsappBtn = document.getElementById('whatsapp-btn');
+		// Identifica a origem do visitante via parâmetros de URL
+const urlParams = new URLSearchParams(window.location.search);
+const utmSource = urlParams.get('utm_source');
+const whatsappBtn = document.getElementById('whatsapp-btn');
 
-		// Verifica se veio pelo anúncio do Google (utm_source=google ou gclid automático do Google Ads)
-		const isFromGoogleAds = (utmSource && utmSource.toLowerCase() === 'google') || urlParams.has('gclid');
+// Detecta cliques vindos do Google Ads (utm_source=google ou gclid automático)
+const isFromGoogleAds = (utmSource && utmSource.toLowerCase() === 'google') || urlParams.has('gclid');
 
-		if (whatsappBtn) {
-			if (utmSource === 'google' || isFromGoogleAds) {
-				whatsappBtn.href = "https://wa.me/5521981541545?text=Olá!%20Vi%20seu%20anúncio%20no%20Google%20e%20quero%20consultar%20a%20pronta%20entrega.";
-			} else {
-				whatsappBtn.href = "https://wa.me/5521981541545?text=Olá!%20Vim%20pelo%20Instagram%20e%20gostaria%20de%20encomendar%20um%20bolo.";
-			}
-		}
+if (whatsappBtn) {
+  if (isFromGoogleAds) {
+    // Frase para visitantes do Google:
+    whatsappBtn.href = "https://wa.me/5521981541545?text=Ol%C3%A1!%20Vim%20pelo%20Google%20e%20gostaria%20de%20ver%20o%20card%C3%A1pio%20de%20encomendas%20e%20pronta-entrega.";
+  } else {
+    // Frase para visitantes do Instagram ou acesso orgânico:
+    whatsappBtn.href = "https://wa.me/5521981541545?text=Ol%C3%A1!%20Vim%20pelo%20Instagram%20e%20gostaria%20de%20ver%20o%20card%C3%A1pio%20de%20encomendas%20e%20pronta-entrega.";
+  }
+}
 
 		/*
 		 * 2. IMPLEMENTAÇÃO DUPLA DE CONTADOR DE ACESSOS E CLIQUES NOS LINKS DE BANNER EXISTENTES
